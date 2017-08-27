@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Javascript Basics</title>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<style type="text/css">
+		h1 {
+			text-decoration: underline;
+		}
+		.circle {
+			float: left;
+			width: 150px;
+			height: 150px;
+			margin: 40px;
+			border-radius: 50%;
+		}
+
+		#red {
+			background-color: red;
+		}
+
+		#blue {
+			background-color: blue;
+		}
+
+		#yellow {
+			background-color: yellow;
+		}
+		.clear-floats {
+			clear: both;
+		}
+	</style>
+</head>
+<body>
+	<h1>Javascript Basics</h1>
+	<h2>Basic Alert Message</h2>
+	<button onclick="alert('Hi there! Thanks for clicking! This alert is embedded into the HTML for the button')">Click Me to Display an Alert Message!</button>
+	<hr>
+
+	<h2>Click Response, Page Elements, and Content Manipulation</h2>
+	<p id="p1">Here is some text that will change when you click the button below!!!</p>
+	<button id="myButton">Change text above!</button>
+
+	<p id="secondParagraph">Javascript is ....</p>
+	<button id="mySecondButton">Click here to Modify and Append to text above</button>
+
+	<p id="textToAppear"></p>
+	<p><button id="myThirdButton">Click here to reveal a couple of my favorite things ABOVE this button</button></p>
+	<hr>
+
+	<h2>Further Content Manipulation</h2>
+	<h4>Click on any of these circles to make them disappear!</h4>
+	<div id="red" class="circle"></div>
+	<div id="blue" class="circle"></div>
+	<div id="yellow" class="circle"></div>
+	<div class="clear-floats"></div>
+	
+	<input id="input-text" type="text" size="75" placeholder="Enter some text here, and then click button to the right"></input>
+	<button id="change-text">Click here to change the text below</button>
+	<p id="some-text">This text will magically change to what you enter!</p>
+	<hr>
+
+	<h2>Basic Array (and Console logging)</h2>
+	<p>You need to open up the Browser inspecter to see the Console logging</p>
+	<button id="array-reveal">Click here to reveal the contents of an array and Console logging</button>
+	<div id="array-content"></div>
+	<hr>
+
+	<h2>Basic If... Else... usage</h2>
+	<p>Can you guess the Magic word? Enter it below</p>
+	<input id="magicWord" type="text" size="35" placeholder="Enter the magic word here, and click Guess"></input>
+	<button id="guess-word">Guess!</button>
+
+	<script type="text/javascript">
+		// Alert message and change content
+		document.getElementById('myButton').onclick = function() {
+			alert("You clicked the button. The text is about to change!");
+			document.getElementById('p1').innerHTML = "<strong>Wow!! You changed the text to THIS! And it is BOLD as well! Amazing!</strong>";
+		}
+		// Change content and append content
+		document.getElementById('mySecondButton').onclick = function() {
+			document.getElementById('secondParagraph').innerHTML = "I think " + document.getElementById('secondParagraph').innerHTML + " awesome!";
+		}
+		// Add Content - and use basic HTML for display
+		document.getElementById('myThirdButton').onclick = function() {
+			document.getElementById('textToAppear').innerHTML = "<ul><li>Family</li><li>Friends</li><li>Richmond Tigers AFL Team</li><li>Coding</li><li>Traveling</li></ul>";
+		}
+
+		// Remove circles methods
+		document.getElementById('red').onclick = function() {
+			document.getElementById('red').style.display = "none";
+		}
+		document.getElementById('blue').onclick = function() {
+			document.getElementById('blue').style.display = "none";
+		}
+		document.getElementById('yellow').onclick = function() {
+			document.getElementById('yellow').style.display = "none";
+		}
+
+		// Change to text entered by user
+		document.getElementById('change-text').onclick = function() {
+			var textEntered = "";
+			textEntered = document.getElementById('input-text').value;
+			document.getElementById('some-text').innerHTML = "The text you entered was: <em>" + textEntered + "</em>";
+		}
+
+		// Reveal array contents - to page and log out to console
+		document.getElementById('array-reveal').onclick = function() {
+			var players = ["Trent Cotchin", "Alex Rance", "Dustin Martin", "Jack Riewoldt", "Daniel Rioli"]
+			var playerLines = "";
+
+			console.log("Each array element is: ");
+			for (var i = 0; i < players.length; i++) {
+				playerLines = playerLines + players[i] + "<br>";
+				console.log(players[i]);
+			}
+			console.log("Full array is: ")
+			console.log(players);
+			document.getElementById('array-content').innerHTML = playerLines;
+		}
+
+		// Guess the Magic word
+		document.getElementById('guess-word').onclick = function() {
+			guessedWord = document.getElementById('magicWord').value.toLowerCase();
+			magicWord = "please";
+
+			if (guessedWord == magicWord) {
+				alert("YES! You guessed it!!");
+			} else {
+				alert("Nup! Try again!");
+			}
+		}
+	</script>
+</body> 
+</html>
